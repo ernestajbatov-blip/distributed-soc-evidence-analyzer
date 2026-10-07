@@ -1,0 +1,4 @@
+run_id,generated_events,indexed_unique_events,duplicate_events,search_p95_seconds,recovery_seconds,sustained_eps,detection_passed,detection_total,critical_detection_failed
+run-01,3600000,3597000,240,4.20,210,1002,10,10,0
+run-02,3600000,3596800,180,4.35,225,998,10,10,0
+run-03,3600000,3597100,210,4.10,205,1007,9,10,0

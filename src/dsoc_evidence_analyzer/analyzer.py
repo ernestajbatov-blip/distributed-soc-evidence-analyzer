@@ -1,11 +1,11 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 import csv
-import json
-import statistics
 from dataclasses import asdict
+import json
 from pathlib import Path
-from typing import Iterable
+import statistics
 
 from .models import AcceptanceCriteria, ExperimentRun, ExperimentSummary, RunEvaluation
 

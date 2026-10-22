@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from collections.abc import Iterable
 import csv
-from dataclasses import asdict
 import json
-from pathlib import Path
 import statistics
+from collections.abc import Iterable
+from dataclasses import asdict
+from pathlib import Path
 
 from .models import AcceptanceCriteria, ExperimentRun, ExperimentSummary, RunEvaluation
 

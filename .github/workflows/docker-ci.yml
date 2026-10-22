@@ -1,0 +1,40 @@
+name: Docker CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'Jenkinsfile'
+      - 'src/**'
+      - 'tests/**'
+      - 'data/**'
+      - '.github/workflows/docker-ci.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-container:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Unit tests
+        run: |
+          python -m pip install pytest
+          PYTHONPATH=src pytest -q
+
+      - name: Build Docker image
+        run: docker build --pull -t dsoc-evidence-analyzer:${{ github.sha }} .
+
+      - name: Container smoke test
+        run: |
+          docker run --rm dsoc-evidence-analyzer:${{ github.sha }} data/sample_runs.csv > container-output.json
+          cat container-output.json
+          grep -q '"overall_pass": true' container-output.json

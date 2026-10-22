@@ -109,3 +109,17 @@ The repository includes issue templates and initial improvement issues for laten
 ## License
 
 MIT License. See [LICENSE](LICENSE).
+
+
+## Assignment 5: Docker and Jenkins CI/CD
+
+The project is containerized with `Dockerfile` and includes a Declarative Jenkins pipeline in `Jenkinsfile`.
+
+```bash
+docker build -t dsoc-evidence-analyzer:latest .
+docker run --rm dsoc-evidence-analyzer:latest data/sample_runs.csv
+```
+
+The Jenkins pipeline performs Checkout -> Unit Tests -> Docker Build -> Container Smoke Test. Setup instructions are in [`docs/jenkins-setup.md`](docs/jenkins-setup.md).
+
+A separate GitHub Actions workflow (`.github/workflows/docker-ci.yml`) independently verifies the same Docker build and smoke test on GitHub-hosted runners. Optional Minikube deployment is documented in [`docs/kubernetes-bonus.md`](docs/kubernetes-bonus.md).

@@ -123,3 +123,17 @@ docker run --rm dsoc-evidence-analyzer:latest data/sample_runs.csv
 The Jenkins pipeline performs Checkout -> Unit Tests -> Docker Build -> Container Smoke Test. Setup instructions are in [`docs/jenkins-setup.md`](docs/jenkins-setup.md).
 
 A separate GitHub Actions workflow (`.github/workflows/docker-ci.yml`) independently verifies the same Docker build and smoke test on GitHub-hosted runners. Optional Minikube deployment is documented in [`docs/kubernetes-bonus.md`](docs/kubernetes-bonus.md).
+
+
+## Run Jenkins locally with Docker Compose
+
+A complete Jenkins lab stack is included in `docker-compose.yml`.
+
+```bash
+docker compose up -d --build
+docker exec dsoc-jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+```
+
+Then open `http://localhost:8080` and create a Pipeline from SCM using this repository and the repository `Jenkinsfile`.
+
+Detailed instructions: [`docs/jenkins-compose.md`](docs/jenkins-compose.md).
